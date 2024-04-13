@@ -89,12 +89,6 @@ function animateFallingStar(star) {
 // Call the function to handle the start button click
 handleStartButtonClick();
 
-
-// Function to update the combo count display
-function updateComboCount(count) {
-    document.getElementById('star-count').textContent = count;
-}
-
 // Function to update the game timer display
 function updateGameTimer(time) {
     document.getElementById('game-timer').textContent = time;
