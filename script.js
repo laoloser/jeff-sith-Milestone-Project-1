@@ -1,3 +1,5 @@
+let comboCount = 0;
+
 // Function to handle the click event of the start button
 function handleStartButtonClick() {
     const startButton = document.getElementById('start-button');
@@ -23,7 +25,6 @@ function startGame() {
 // Function to initialize the game
 function initializeGame() {
     // Initialize game variables
-    let comboCount = 0; // Combo counter (star count)
     let gameTimer = 30; // Game timer (in seconds)
     let gameOver = false; // Game over flag
 
@@ -134,7 +135,7 @@ function collectStar(key) {
 
 // Function to update the combo count display
 function updateComboCount(count) {
-    document.getElementById('star-count').textContent = count;
+    document.getElementById('combo-count').textContent = count;
 }
 
 

@@ -50,13 +50,14 @@ body {
     cursor: pointer;
   }
   
-  .gameArea {
+  /* .gameArea {
     width: 100%;
     min-height: 400px;
     background-color: #ddd;
     margin-bottom: 20px;
     position: relative;
-  }
+    
+  } */
   
   #game-over, #victory {
     text-align: center;
@@ -70,7 +71,48 @@ body {
     cursor: pointer;
   }
 
-#game-timer{
+#timer{
   text-align: center;
+  margin: 0 auto;
 }
-  
+ 
+
+
+/* Define styles for lanes */
+.gameArea {
+  width: 100%;
+  min-height: 400px;
+  background-color: #ddd;
+  margin-bottom: 20px;
+  position: relative;
+  box-sizing: border-box; /* Ensure borders are included in width calculation */
+}
+
+/* Define border styles for lanes */
+.gameArea::before,
+.gameArea::after,
+.divide {
+  content: "";
+  position: absolute;
+  height: 100%;
+  border-right: 1px solid #c53535; /* Add a solid border to the right of each lane */
+}
+
+/* Adjust positions of each lane */
+.gameArea::before {
+  left: 25%; /* Position the first lane */
+}
+
+.gameArea::after {
+  left: 50%; /* Position the second lane */
+}
+
+.divide {
+  left: 75%; /* Position the third lane */
+}
+
+
+/* Adjust spacing between lanes */
+.lane {
+  width: calc((100% / 4) - 1px); /* Divide the game area into four equal parts */
+}

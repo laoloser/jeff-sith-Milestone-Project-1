@@ -28,12 +28,25 @@
         </select>
       </section>
       <button id="start-button">Start Game</button>
+      <section id="timer">
       <p>Time left :</p>
       <span id="game-timer">30</span>
+      <section id="combo">
+        <p>Combo count:</p>
+        <span id="combo-count">0</span>
+      </section>
+      
+    </section>
 
 
-    <div class="gameArea">      
-    </div>
+
+<!-- Game area with lanes -->
+<div class="gameArea">
+  <div class="lane"></div>
+  <div class="divide"></div>
+</div>
+
+
     <section id="game-over" style="display: none;">
         <h2>Game Over</h2>
         <p>Would you like to restart?</p>
