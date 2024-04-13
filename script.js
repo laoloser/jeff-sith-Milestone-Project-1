@@ -130,10 +130,17 @@ function collectStar(key) {
             // Collect the star
             star.remove();
             // Update combo count
-            updateComboCount(parseInt(document.getElementById('star-count').textContent) + 1);
+            comboCount++;
+            updateComboCount(comboCount);
         }
     });
 }
+
+// Function to update the combo count display
+function updateComboCount(count) {
+    document.getElementById('star-count').textContent = count;
+}
+
 
 // Add event listener for keydown events
 document.addEventListener('keydown', handleKeyDown);
