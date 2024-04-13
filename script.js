@@ -53,15 +53,16 @@ function generateFallingStars() {
     // Get game area dimensions
     const gameArea = document.querySelector('.gameArea');
     const gameAreaWidth = gameArea.clientWidth;
-    const gameAreaHeight = gameArea.clientHeight;
+
+    // Get a random position within the width of the game area
+    const randomX = Math.floor(Math.random() * gameAreaWidth);
 
     // Create a new star element
     const star = document.createElement('div');
     star.classList.add('star');
     
     // Set random position for the star within the game area
-    const randomX = Math.floor(Math.random() * gameAreaWidth);
-    const randomY = -50; // Start above the game area
+    const randomY = Math.floor(Math.random() * gameArea.clientHeight); // Random Y position within game area
     star.style.left = `${randomX}px`;
     star.style.top = `${randomY}px`;
 
@@ -71,6 +72,7 @@ function generateFallingStars() {
     // Animate the falling star
     animateFallingStar(star);
 }
+
 
 // Function to animate the falling star
 function animateFallingStar(star) {

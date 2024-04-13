@@ -57,3 +57,11 @@ body {
     font-size: 16px;
     cursor: pointer;
   }
+
+.star {
+  width: 20px; /* Adjust width as needed */
+  height: 20px; /* Adjust height as needed */
+  background-color: yellow; /* Adjust color as needed */
+  position: absolute;
+  border-radius: 50%; /* Make it round */
+}
