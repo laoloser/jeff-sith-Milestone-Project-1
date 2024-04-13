@@ -10,13 +10,13 @@ body {
   }
 
   .star {
-    width: 20px; /* Adjust width as needed */
-    height: 20px; /* Adjust height as needed */
+    width: 50px; /* Adjust width as needed */
+    height: 80px; /* Adjust height as needed */
     /* Set background image to your PNG file */
     background-image: url('assets/Kirby heart_3.5x5.png');
-    background-size: cover; /* Ensure the image covers the entire star element */
+    background-size:contain; /* Ensure the image covers the entire star element */
     position: absolute;
-    border-radius: 50%; /* Make it round */
+  
   }
   
   h1, h2 {

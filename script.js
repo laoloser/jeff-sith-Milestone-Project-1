@@ -1,5 +1,12 @@
 let comboCount = 0;
 
+const difficultyDurations = {
+    easy: 2000, // 2 seconds for easy
+    medium: 1000, // 1 second for medium
+    hard: 500 // 0.5 seconds for hard
+};
+
+
 // Function to handle the click event of the start button
 function handleStartButtonClick() {
     const startButton = document.getElementById('start-button');
@@ -18,12 +25,15 @@ function startGame() {
     // Show the game area
     document.querySelector('.gameArea').style.display = 'block';
 
-    // Initialize the game
-    initializeGame();
+    // Get selected difficulty
+    const selectedDifficulty = document.getElementById('difficulty-selector').value;
+
+    // Initialize the game with selected difficulty
+    initializeGame(selectedDifficulty);
 }
 
 // Function to initialize the game
-function initializeGame() {
+function initializeGame(difficulty) {
     // Initialize game variables
     let gameTimer = 30; // Game timer (in seconds)
     let gameOver = false; // Game over flag
@@ -45,52 +55,50 @@ function initializeGame() {
         }
 
         // Generate falling stars
-        generateFallingStars();
+        generateFallingStars(difficulty);
     }, 1000); // Update every second
 }
 
 // Function to generate falling stars
-function generateFallingStars() {
+function generateFallingStars(difficulty) {
     // Get game area dimensions
     const gameArea = document.querySelector('.gameArea');
     const gameAreaWidth = gameArea.clientWidth;
+    const gameAreaHeight = gameArea.clientHeight;
 
     // Get a random position within the width of the game area
-    const randomX = Math.floor(Math.random() * gameAreaWidth);
+    const randomX = Math.floor(Math.random() * (gameAreaWidth - 20)); // Subtracting star width to prevent stars from appearing partially outside the game area
 
     // Create a new star element
     const star = document.createElement('div');
     star.classList.add('star');
-    
+
     // Set random position for the star within the game area
-    const randomY = Math.floor(Math.random() * gameArea.clientHeight); // Random Y position within game area
+    const randomY = Math.floor(Math.random() * (gameAreaHeight - 50)); // Subtracting star height to prevent stars from appearing partially outside the game area
     star.style.left = `${randomX}px`;
     star.style.top = `${randomY}px`;
 
     // Append the star to the game area
     gameArea.appendChild(star);
 
-    // Animate the falling star
-    animateFallingStar(star);
+    // Animate the falling star with duration based on difficulty
+    animateFallingStar(star, difficultyDurations[difficulty]);
 }
 
-
 // Function to animate the falling star
-function animateFallingStar(star) {
-    const gameAreaHeight = document.querySelector('.gameArea').clientHeight;
-    const animationDuration = 3000; // 3 seconds for star to reach bottom
-
+function animateFallingStar(star, duration) {
     // Use CSS animation to move the star from top to bottom of the game area
-    star.style.animation = `falling-star ${animationDuration}ms linear`;
+    star.style.animation = `falling-star ${duration}ms linear`;
 
     // Remove the star from the game area after the animation ends
     setTimeout(() => {
         star.remove();
-    }, animationDuration);
+    }, duration);
 }
 
+
 // Call the function to handle the start button click
-handleStartButtonClick();
+//handleStartButtonClick();
 
 // Function to update the game timer display
 function updateGameTimer(time) {
