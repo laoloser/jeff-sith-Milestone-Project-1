@@ -15,6 +15,23 @@ function handleStartButtonClick() {
     });
 }
 
+// Function to handle the click event of the restart button
+function handleRestartButtonClick() {
+    const restartButton = document.getElementById('restart-button');
+    restartButton.addEventListener('click', function() {
+        // Reset game variables
+        comboCount = 0;
+        document.getElementById('combo-count').textContent = comboCount;
+        // Clear game area
+        document.querySelector('.gameArea').innerHTML = '';
+        // Hide game over screen
+        document.getElementById('game-over').style.display = 'none';
+        // Start game again
+        startGame();
+    });
+}
+
+
 // Start game function
 function startGame() {
     // Hide the instructions and start button
@@ -24,13 +41,18 @@ function startGame() {
 
     // Show the game area
     document.querySelector('.gameArea').style.display = 'block';
+    document.getElementById('game-info').style.display = 'flex';
 
     // Get selected difficulty
     const selectedDifficulty = document.getElementById('difficulty-selector').value;
 
     // Initialize the game with selected difficulty
     initializeGame(selectedDifficulty);
+
+    // Setup restart button click event
+    handleRestartButtonClick();
 }
+
 
 // Function to initialize the game
 function initializeGame(difficulty) {
@@ -95,10 +117,6 @@ function animateFallingStar(star, duration) {
         star.remove();
     }, duration);
 }
-
-
-// Call the function to handle the start button click
-//handleStartButtonClick();
 
 // Function to update the game timer display
 function updateGameTimer(time) {
