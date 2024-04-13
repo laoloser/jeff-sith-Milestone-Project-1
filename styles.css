@@ -70,5 +70,7 @@ body {
     cursor: pointer;
   }
 
-
+#game-timer{
+  text-align: center;
+}
   
