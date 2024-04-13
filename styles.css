@@ -74,6 +74,12 @@ body {
 #timer{
   text-align: center;
   margin: 0 auto;
+  
+}
+
+#combo{
+  text-align: center;
+  margin: 0 auto;
 }
  
 
@@ -115,4 +121,9 @@ body {
 /* Adjust spacing between lanes */
 .lane {
   width: calc((100% / 4) - 1px); /* Divide the game area into four equal parts */
+}
+
+#game-info {
+  display:flex;
+  justify-content: center;
 }

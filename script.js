@@ -117,7 +117,7 @@ function collectStar(key) {
     const fallingStars = document.querySelectorAll('.star');
 
     // Loop through each falling star
-    fallingStars.forEach(star => {
+    for (const star of fallingStars) {
         const starPositionX = parseInt(star.style.left);
         const laneWidth = document.querySelector('.gameArea').clientWidth / 4;
         const lane = Math.floor(starPositionX / laneWidth); // Determine which lane the star is in
@@ -129,9 +129,12 @@ function collectStar(key) {
             // Update combo count
             comboCount++;
             updateComboCount(comboCount);
+            // Break the loop after collecting one star
+            break;
         }
-    });
+    }
 }
+
 
 // Function to update the combo count display
 function updateComboCount(count) {
