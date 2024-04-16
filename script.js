@@ -7,6 +7,14 @@ const difficultyDurations = {
     hard: 500 // 0.5 seconds for hard
 };
 
+// Define specific X values for lanes
+const laneXValues = [
+    200, // X-value for lane 1
+    650, // X-value for lane 2
+    1050, // X-value for lane 3
+    1500 // X-value for lane 4
+];
+
 // Function to handle the click event of the start button
 function handleStartButtonClick() {
     const startButton = document.getElementById('start-button');
@@ -87,20 +95,19 @@ function initializeGame(difficulty) {
 function generateFallingStars(difficulty) {
     // Get game area dimensions
     const gameArea = document.querySelector('.gameArea');
-    const gameAreaWidth = gameArea.clientWidth;
     const gameAreaHeight = gameArea.clientHeight;
 
-    // Get a random position within the width of the game area
-    const randomX = Math.floor(Math.random() * (gameAreaWidth - 20)); // Subtracting star width to prevent stars from appearing partially outside the game area
+    // Get a random lane
+    const randomLaneIndex = Math.floor(Math.random() * laneXValues.length);
+    const randomX = laneXValues[randomLaneIndex];
 
     // Create a new star element
     const star = document.createElement('div');
     star.classList.add('star');
 
-    // Set random position for the star within the game area
-    const randomY = Math.floor(Math.random() * (gameAreaHeight - 50)); // Subtracting star height to prevent stars from appearing partially outside the game area
+    // Set position for the star within the game area
     star.style.left = `${randomX}px`;
-    star.style.top = `${randomY}px`;
+    star.style.top = `0px`; // Start from the top
 
     // Append the star to the game area
     gameArea.appendChild(star);
@@ -108,6 +115,7 @@ function generateFallingStars(difficulty) {
     // Animate the falling star with duration based on difficulty
     animateFallingStar(star, difficultyDurations[difficulty]);
 }
+
 
 // Function to animate the falling star
 function animateFallingStar(star, duration) {
