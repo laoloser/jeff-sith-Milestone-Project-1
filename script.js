@@ -9,10 +9,10 @@ const difficultyDurations = {
 
 // Define specific X values for lanes
 const laneXValues = [
-    200, // X-value for lane 1
-    650, // X-value for lane 2
-    1050, // X-value for lane 3
-    1500 // X-value for lane 4
+    140, // X-value for lane 1
+    420, // X-value for lane 2
+    720, // X-value for lane 3
+    1020 // X-value for lane 4
 ];
 
 // Define an array of song names
@@ -127,15 +127,17 @@ function initializeGame(difficulty) {
     }, 1000); // Update every second
 }
 
-// Function to generate falling stars
 function generateFallingStars(difficulty) {
     // Get game area dimensions
     const gameArea = document.querySelector('.gameArea');
-    const gameAreaHeight = gameArea.clientHeight;
+    const gameAreaWidth = gameArea.clientWidth;
+
+    // Calculate the maximum X-coordinate to ensure stars are generated within the game area
+    const maxRandomX = gameAreaWidth - 50; // Adjusted width of the star
 
     // Get a random lane
     const randomLaneIndex = Math.floor(Math.random() * laneXValues.length);
-    const randomX = laneXValues[randomLaneIndex];
+    const randomX = laneXValues[randomLaneIndex]; // Pick a random X-coordinate from laneXValues
 
     // Create a new star element
     const star = document.createElement('div');
@@ -151,6 +153,8 @@ function generateFallingStars(difficulty) {
     // Animate the falling star with duration based on difficulty
     animateFallingStar(star, difficultyDurations[difficulty]);
 }
+
+
 
 
 // Function to animate the falling star

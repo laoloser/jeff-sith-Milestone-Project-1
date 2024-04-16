@@ -14,7 +14,7 @@ body {
       top: -100px; /* Start position above the game area */
     }
     100% {
-      top: calc(100% + 100px); /* End position below the game area */
+      top: calc(90% + 1px); /* End position below the game area */
     }
   }
   
@@ -80,7 +80,7 @@ body {
     cursor: pointer;
   }
 
-#timer{
+/* #timer{
   text-align: center;
   margin: 0 auto;
   
@@ -89,19 +89,29 @@ body {
 #combo{
   text-align: center;
   margin: 0 auto;
+} */
+
+#timer,
+#combo {
+  text-align: center;
+  margin: 0 5px; /* Add some margin between them */
 }
+
  
 
 
-/* Define styles for lanes */
 .gameArea {
-  width: 100%;
-  min-height: 400px;
-  background-color: #ddd;
-  margin-bottom: 20px;
-  position: relative;
-  box-sizing: border-box; /* Ensure borders are included in width calculation */
+  width: 1200px;
+  height: 500px;
+  position: absolute;
+  margin: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px black solid;
+
 }
+
+
 
 /* Define border styles for lanes */
 .gameArea::before,
@@ -133,18 +143,29 @@ body {
 }
 
 #game-info {
+  width: 100%;
   display:flex;
   justify-content: center;
 }
 
-#music {
+/* #music {
   border: 1px black solid;
   height : 100px;
   width: 500px; 
   margin: 30px auto;
   display:flex;
   justify-content:center;
+} */
+
+.music {
+  border: 1px black solid;
+  height: 100px;
+  width: 500px;
+  margin: 30px auto; /* Adjust the margin as needed */
+  text-align: center;
+  clear: both; /* Ensure it clears any floating elements */
 }
+
 
 .music-button {
   border: 1px black solid;
