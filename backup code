@@ -1,3 +1,5 @@
+/*
+
 let comboCount = 0;
 let gameLoopInterval; // Define game loop interval variable
 
@@ -15,40 +17,59 @@ const laneXValues = [
     1500 // X-value for lane 4
 ];
 
-// Define an array of song names
-const songNames = ['No Music', 'Song 1', 'Song 2', 'Song 3'];
+// Function to handle click events on music buttons
+function handleMusicButtonClick(event) {
+    // Get the clicked button
+    const clickedButton = event.target;
 
-// Variable to store the index of the currently selected song
-let currentSongIndex = 0; // Assuming the default is "No Music"
+    // Get the index of the currently selected song
+    let currentSongIndex = 0; // Assuming the index of "No Music" is 0
 
-// Function to handle click events on music toggle button
-function handleMusicToggleButton() {
-    // Increment the current song index to toggle through songs
-    currentSongIndex = (currentSongIndex + 1) % songNames.length;
+    // Update the currently selected song index based on the clicked button
+    if (clickedButton.textContent === 'Previous Song') {
+        currentSongIndex = (currentSongIndex - 1 + 3) % 3; // Loop through songs
+    } else if (clickedButton.textContent === 'Next Song') {
+        currentSongIndex = (currentSongIndex + 1) % 3; // Loop through songs
+    }
 
     // Update the display of the currently selected song
-    updateSelectedSong();
+    updateSelectedSong(currentSongIndex);
 }
 
 // Function to update the display of the currently selected song
-function updateSelectedSong() {
-    const currentSongElement = document.getElementById('current-song');
-    currentSongElement.textContent = `Current Song: ${songNames[currentSongIndex]}`;
+function updateSelectedSong(songIndex) {
+    const songNames = ['No Music', 'Song 1', 'Song 2', 'Song 3']; // Array of song names
+    const selectedSongElement = document.querySelector('.music-button.current');
+    selectedSongElement.textContent = `Current Song: ${songNames[songIndex]}`;
 }
 
-// Add event listener to music toggle button
-const musicToggleButton = document.getElementById('next-song');
-musicToggleButton.addEventListener('click', handleMusicToggleButton);
+// Add event listeners to music buttons
+const musicButtons = document.querySelectorAll('.music-button');
+musicButtons.forEach(button => {
+    button.addEventListener('click', handleMusicButtonClick);
+});
 
-// Function to play the selected song (you can implement this function if needed)
-function playSelectedSong() {
-    const selectedSong = songNames[currentSongIndex];
-    // Logic to play the selected song
-    console.log(`Now playing: ${selectedSong}`);
+
+// Function to play the selected song
+function playSong(songIndex) {
+    // Logic to play the selected song based on the index
+    // For demonstration, let's assume playing logic here
+    console.log(`Playing song ${songIndex}`);
 }
 
-// Call the function to update the display of the currently selected song
-updateSelectedSong();
+// Function to get the index of the currently selected song
+function getCurrentSongIndex() {
+    // Logic to determine the currently selected song index
+    // For demonstration, let's return a fixed index for now
+    return 0;
+}
+
+
+// Add event listeners to music buttons
+const musicButtons = document.querySelectorAll('.music-button');
+musicButtons.forEach(button => {
+    button.addEventListener('click', handleMusicButtonClick);
+});
 
 
 // Function to handle the click event of the start button
@@ -246,3 +267,5 @@ handleStartButtonClick();
 
 // Call the function to handle the restart button click
 handleRestartButtonClick();
+
+*/

@@ -153,3 +153,7 @@ body {
   text-align: center;
 
 }
+
+.music-button img {
+  max-height: 50px; /* Adjust the value as needed */
+}
