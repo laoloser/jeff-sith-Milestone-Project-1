@@ -231,24 +231,53 @@ function endGame() {
     // Hide the game area
     document.querySelector('.gameArea').style.display = 'none';
 
-    // Clear any remaining stars without adding to the current combo count
-    const fallingStars = document.querySelectorAll('.star');
-    fallingStars.forEach(star => {
-        star.remove();
-    });
+    // Get the selected difficulty
+    const selectedDifficulty = document.getElementById('difficulty-selector').value;
 
-    // Calculate earned amount based on the number of stars collected
-    const earnedAmount = comboCount * 1000;
+    // Calculate earned amount based on the number of stars collected and the difficulty level
+    let earnedAmount;
+    switch (selectedDifficulty) {
+        case 'easy':
+            earnedAmount = comboCount * 1;
+            break;
+        case 'medium':
+            earnedAmount = comboCount * 5;
+            break;
+        case 'hard':
+            earnedAmount = comboCount * 12;
+            break;
+        default:
+            earnedAmount = 0;
+            break;
+    }
 
-    // Display the game over screen with the earned amount
+    // Update the total stars caught and total amount earned
+    let totalStarsCaught = localStorage.getItem('totalStarsCaught');
+    totalStarsCaught = totalStarsCaught ? parseInt(totalStarsCaught) + comboCount : comboCount;
+    localStorage.setItem('totalStarsCaught', totalStarsCaught);
+
+    let totalAmountEarned = localStorage.getItem('totalAmountEarned');
+    totalAmountEarned = totalAmountEarned ? parseInt(totalAmountEarned) + earnedAmount : earnedAmount;
+    localStorage.setItem('totalAmountEarned', totalAmountEarned);
+
+    // Display the game over screen with the earned amount and totals
     const gameOverSection = document.getElementById('game-over');
     gameOverSection.style.display = 'block';
     const earnedAmountParagraph = document.getElementById('earned-amount');
     earnedAmountParagraph.textContent = `You have earned $${earnedAmount}`;
 
+    const totalStarsParagraph = document.getElementById('total-stars');
+    totalStarsParagraph.textContent = `Total stars caught: ${totalStarsCaught}`;
+
+    const totalAmountParagraph = document.getElementById('total-amount');
+    totalAmountParagraph.textContent = `Total amount earned: $${totalAmountEarned}`;
+
     // Display the total stars collected
     document.getElementById('star-count').textContent = comboCount;
 }
+
+
+
 
 
 // Function to handle keydown events
