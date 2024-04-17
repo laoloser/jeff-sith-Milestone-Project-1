@@ -1,5 +1,7 @@
 let comboCount = 0;
 let gameLoopInterval; // Define game loop interval variable
+let fallingStarsIntervalId; // Declare falling stars interval variable
+
 
 const difficultyDurations = {
     easy: 2000, // 2 seconds for easy
@@ -68,6 +70,7 @@ function handleRestartButtonClick() {
 // Function to restart the game
 function restartGame() {
     clearInterval(gameLoopInterval); // Clear the game loop interval
+    clearInterval(fallingStarsIntervalId); // Clear the falling stars interval
     comboCount = 0; // Reset combo count
     updateComboCount(comboCount);
     document.querySelector('.gameArea').innerHTML = ''; // Clear game area
@@ -78,6 +81,7 @@ function restartGame() {
     document.getElementById('start-button').style.display = 'block'; // Show start button
     document.getElementById('game-info').style.display = 'none'; // Hide game info
 }
+
 
 // Start game function
 function startGame() {
@@ -90,15 +94,18 @@ function startGame() {
     // Show the game area
     document.querySelector('.gameArea').style.display = 'block';
 
-    // Get selected difficulty
-    const selectedDifficulty = document.getElementById('difficulty-selector').value;
+    // Add a delay before initializing the game
+    setTimeout(() => {
+        // Get selected difficulty
+        const selectedDifficulty = document.getElementById('difficulty-selector').value;
 
-    // Reset combo count
-    comboCount = 0;
-    updateComboCount(comboCount);
+        // Reset combo count
+        comboCount = 0;
+        updateComboCount(comboCount);
 
-    // Initialize the game with selected difficulty
-    initializeGame(selectedDifficulty);
+        // Initialize the game with selected difficulty
+        initializeGame(selectedDifficulty);
+    }, 2000); // Delay for 2 seconds (2000 milliseconds)
 }
 
 // Function to initialize the game
@@ -110,8 +117,8 @@ function initializeGame(difficulty) {
     updateComboCount(comboCount);
     updateGameTimer(gameTimer);
 
-    // Start game loop
-    gameLoopInterval = setInterval(function() {
+    // Set the interval for the game loop (controls the rate of the in-game timer)
+    const gameLoopInterval = setInterval(() => {
         // Update game timer
         gameTimer--;
         updateGameTimer(gameTimer);
@@ -121,11 +128,42 @@ function initializeGame(difficulty) {
             clearInterval(gameLoopInterval); // Stop the game loop
             endGame(); // End the game
         }
-
-        // Generate falling stars
-        generateFallingStars(difficulty);
     }, 1000); // Update every second
+
+    // Set the interval for generating falling stars based on the selected difficulty
+    let fallingStarsInterval;
+    switch (difficulty) {
+        case 'easy':
+            fallingStarsInterval = 800; // 1500ms for easy
+            break;
+        case 'medium':
+            fallingStarsInterval = 500; // 1000ms for medium
+            break;
+        case 'hard':
+            fallingStarsInterval = 300; // 500ms for hard
+            break;
+        default:
+            fallingStarsInterval = 1500; // Default to 1500ms
+            break;
+    }
+
+    // Generate falling stars initially and then at intervals based on the selected difficulty
+    generateFallingStars(difficulty); // Initial generation
+    const fallingStarsGenerator = () => {
+        generateFallingStars(difficulty);
+    };
+    const fallingStarsIntervalId = setInterval(fallingStarsGenerator, fallingStarsInterval);
+
+    // Store the interval IDs in an object so they can be cleared later
+    const intervalIds = {
+        gameLoopInterval,
+        fallingStarsIntervalId
+    };
+
+    // Return the interval IDs so they can be cleared outside this function if needed
+    return intervalIds;
 }
+
 
 function generateFallingStars(difficulty) {
     // Get game area dimensions
@@ -199,11 +237,19 @@ function endGame() {
         star.remove();
     });
 
-    // Display the game over screen
-    document.getElementById('game-over').style.display = 'block';
+    // Calculate earned amount based on the number of stars collected
+    const earnedAmount = comboCount * 1000;
+
+    // Display the game over screen with the earned amount
+    const gameOverSection = document.getElementById('game-over');
+    gameOverSection.style.display = 'block';
+    const earnedAmountParagraph = document.getElementById('earned-amount');
+    earnedAmountParagraph.textContent = `You have earned $${earnedAmount}`;
+
     // Display the total stars collected
     document.getElementById('star-count').textContent = comboCount;
 }
+
 
 // Function to handle keydown events
 function handleKeyDown(event) {
