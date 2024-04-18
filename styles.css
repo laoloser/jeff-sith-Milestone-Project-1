@@ -21,8 +21,8 @@ body {
   
   .star {
     width: 50px;
-    height: 80px;
-    background-image: url('assets/Kirby heart_3.5x5.png');
+    height: 50px;
+    background-image: url('assets/star.png');
     background-size: contain;
     position: absolute;
     animation: falling-star linear; /* Apply the falling-star animation */

@@ -195,7 +195,6 @@ function generateFallingStars(difficulty) {
 
 
 
-// Function to animate the falling star
 function animateFallingStar(star, duration) {
     const gameAreaHeight = document.querySelector('.gameArea').clientHeight;
 
@@ -220,6 +219,7 @@ function animateFallingStar(star, duration) {
     // Remove the star if it's already at the bottom after a delay
     setTimeout(removeStar, duration);
 }
+
 
 // Function to update the game timer display
 function updateGameTimer(time) {
