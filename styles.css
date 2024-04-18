@@ -4,9 +4,10 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    color:white;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-image: url('assets/background.jpg');
   }
 
   @keyframes falling-star {
@@ -30,6 +31,7 @@ body {
   
   h1, h2 {
     text-align: center;
+    background-color: #2e4a71;
   }
   
   .container {
@@ -39,7 +41,7 @@ body {
   }
   
   .instructions {
-    background-color: #fff;
+    background-color: #2e4a71;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -48,6 +50,7 @@ body {
   
   #difficulty {
     text-align: center;
+    background-color: #2e4a71;
     margin-bottom: 20px;
   }
   
@@ -67,10 +70,22 @@ body {
     position: relative;
     
   } */
+
+
+
+
   
   #game-over, #victory {
     text-align: center;
+    color:#fff;
+    Width:1200px;
+    height:500px;
     display: none;
+    background-image: url('assets/gameover-background.jpg');
+    background-size: cover;
+    left: 50%;
+    transform: translateX(-50%);
+    position:absolute;
   }
   
   #game-over button, #victory button {
@@ -94,7 +109,9 @@ body {
 #timer,
 #combo {
   text-align: center;
-  margin: 0 5px; /* Add some margin between them */
+  margin: 0 1px;
+  background-color: #2e4a71;
+  width:400px;
 }
 
  
@@ -107,34 +124,36 @@ body {
   margin: auto;
   left: 50%;
   transform: translateX(-50%);
-  border: 5px black solid;
+  /* border: 5px black solid; */
+  background-image: url('assets/game-background.jpg');
+  background-size: cover;
 
 }
 
 
 
 /* Define border styles for lanes */
-.gameArea::before,
+/* .gameArea::before,
 .gameArea::after,
 .divide {
   content: "";
   position: absolute;
   height: 100%;
-  border-right: 1px solid #c53535; /* Add a solid border to the right of each lane */
-}
+  border-right: 1px solid #c53535;
+} */
 
 /* Adjust positions of each lane */
-.gameArea::before {
-  left: 25%; /* Position the first lane */
-}
+/* .gameArea::before {
+  left: 25%;
+} */
 
-.gameArea::after {
-  left: 50%; /* Position the second lane */
-}
+/* .gameArea::after {
+  left: 50%; 
+} */
 
-.divide {
-  left: 75%; /* Position the third lane */
-}
+/* .divide {
+  left: 75%;
+} */
 
 
 /* Adjust spacing between lanes */
@@ -158,9 +177,11 @@ body {
 } */
 
 .music {
-  border: 1px black solid;
+  /* border: 1px black solid; */
+  color:white;
+  background-color: #2e4a71;
   height: 100px;
-  width: 500px;
+  width: 200px;
   margin: 30px auto; /* Adjust the margin as needed */
   text-align: center;
   clear: both; /* Ensure it clears any floating elements */
@@ -168,7 +189,6 @@ body {
 
 
 .music-button {
-  border: 1px black solid;
   margin:2px;
   padding:10px;
   text-align: center;
