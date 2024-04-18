@@ -1,15 +1,16 @@
 let comboCount = 0;
-let gameLoopInterval; // Define game loop interval variable
-let fallingStarsIntervalId; // Declare falling stars interval variable
+let gameLoopInterval; 
+let fallingStarsIntervalId; 
 
 
+//Depending on what difficulty is selected, this is the amount of time it takes for a star to fall from top to bottom
 const difficultyDurations = {
-    easy: 2000, // 2 seconds for easy
-    medium: 1000, // 1 second for medium
-    hard: 500 // 0.5 seconds for hard
+    easy: 2000, 
+    medium: 1000, 
+    hard: 500 
 };
 
-// Define specific X values for lanes
+// These are the X values for each lanes that the stars will snap to
 const laneXValues = [
     140, // X-value for lane 1
     420, // X-value for lane 2
@@ -21,9 +22,9 @@ const laneXValues = [
 const songNames = ['No Music', 'Song 1', 'Song 2', 'Song 3'];
 
 // Variable to store the index of the currently selected song
-let currentSongIndex = 0; // Assuming the default is "No Music"
+let currentSongIndex = 0; // Default is 0 = No Music
 
-// Function to handle click events on music toggle button
+// Function for the music toggle button
 function handleMusicToggleButton() {
     // Increment the current song index to toggle through songs
     currentSongIndex = (currentSongIndex + 1) % songNames.length;
