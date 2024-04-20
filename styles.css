@@ -1,4 +1,4 @@
-/* styles.css */
+
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -10,10 +10,10 @@ body {
 
 @keyframes falling-star {
   0% {
-    top: -100px; /* Start position above the game area */
+    top: -100px;
   }
   100% {
-    top: calc(90% + 1px); /* End position below the game area */
+    top: calc(90% + 1px); 
   }
 }
 
@@ -23,7 +23,7 @@ body {
   background-image: url("assets/star.png");
   background-size: contain;
   position: absolute;
-  animation: falling-star linear; /* Apply the falling-star animation */
+  animation: falling-star linear; 
 }
 
 h1,
@@ -117,12 +117,12 @@ h2 {
   margin: auto;
   left: 50%;
   transform: translateX(-50%);
-  /* border: 5px black solid; */
+
   background-image: url("assets/game-background.jpg");
   background-size: cover;
 }
 
-/* Define border styles for lanes */
+
 /* .gameArea::before,
 .gameArea::after,
 .divide {
@@ -132,7 +132,7 @@ h2 {
   border-right: 1px solid #c53535;
 } */
 
-/* Adjust positions of each lane */
+
 /* .gameArea::before {
   left: 25%;
 } */
@@ -145,11 +145,11 @@ h2 {
   left: 75%;
 } */
 
-/* Adjust spacing between lanes */
+
 .lane {
   width: calc(
     (100% / 4) - 1px
-  ); /* Divide the game area into four equal parts */
+  ); 
 }
 
 #game-info {
@@ -168,14 +168,13 @@ h2 {
 } */
 
 .music {
-  /* border: 1px black solid; */
   color: white;
   background-color: #2e4a71;
   height: 100px;
   width: 200px;
-  margin: 30px auto; /* Adjust the margin as needed */
+  margin: 30px auto; 
   text-align: center;
-  clear: both; /* Ensure it clears any floating elements */
+  clear: both; 
 }
 
 .music-button {
@@ -185,5 +184,5 @@ h2 {
 }
 
 .music-button img {
-  max-height: 50px; /* Adjust the value as needed */
+  max-height: 50px; 
 }
