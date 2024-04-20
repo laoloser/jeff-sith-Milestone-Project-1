@@ -215,7 +215,7 @@ function generateFallingStars(difficulty) {
 
   // Set position for the star within the game area
   star.style.left = `${randomX}px`;
-  star.style.top = `0px`; // Start from the top
+  star.style.top = `0px`; // Start from above the top
 
   // Append the star to the game area
   gameArea.appendChild(star);
